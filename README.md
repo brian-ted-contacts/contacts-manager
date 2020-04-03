@@ -28,7 +28,9 @@ The contacts information should be shown using the following format
 Name | Phone number
 ---------------
 Jack Blank | 1231231234
+
 Jane Doe | 2342342345
+
 Sam Space | 3453453456
 
 Here is what the code for your application might look like:
@@ -58,6 +60,9 @@ Format the output of the contacts, so that all of the columns have the same widt
 Name       | Phone number |
 ---------------------------
 Jack Blank | 210-567-8923 |
+
 Jane Doe   | 789-8902     |
+
 Sam Space  | 210-581-8123 |
+
 Hint: you can use format strings with the System.our.printf or String.format methods to ensure the columns have the same width.
