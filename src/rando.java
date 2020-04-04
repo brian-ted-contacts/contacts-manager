@@ -13,7 +13,7 @@ public class rando {
         // Variable for do-while loop
         int answer;
         // Initial greeting
-        System.out.println("Welcome to your contacts application!\n\n");
+        System.out.println("\nWelcome to your contacts application!\n");
 
         // Loop until user wants to exit the app
         do {
@@ -58,7 +58,8 @@ public class rando {
                     break;
                 case 2:
                     // Add a contact
-                    System.out.println("add");
+//                    System.out.println("add");
+                    Add_ted.addContact();
                     break;
                 case 3:
                     // Search for contact
