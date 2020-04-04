@@ -3,29 +3,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Contact {
-    private String name;
-    private String number;
-    private String email;
     Scanner input = new Scanner(System.in);
     public Contact (){};
-
-    public Contact(String name, String number, String email) {
-        this.name = name;
-        this.number = number;
-        this.email = email;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     // Method used to turn string of numbers into
     // valid phone number format
@@ -107,5 +86,12 @@ public class Contact {
             return validEmail(userResponse);
         }
     }
+
+    // Method to take contact and separate into sections
+    public String[] useableContact(String str){
+        return str.split(",");
+
+    }
+
 
 }

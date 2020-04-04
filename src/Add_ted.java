@@ -1,18 +1,41 @@
-import javax.print.DocFlavor;
-import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Add_ted {
 
     public static void addContact() throws IOException {
+        Scanner input = new Scanner(System.in);
+        StringBuilder holding = new StringBuilder();
 
+        // Prompt user to enter a name
+        System.out.print("Please enter contact's name : ");
+        String newContactName = input.nextLine();
 
+        // Search contacts for similar name
+//        if (Print_ted.allContacts().contains())
+            // If found prompt user if they want to override this contact
+
+            // If not the addContacts()
+
+        // If no name found then add name to holding list
+
+        // Prompt user for the phone number of the contact
+
+        // Use Contact.validNumber() then Contact.correctPhoneFormat()
+
+        // Add phone number to holding list
+
+        // Prompt user for email
+
+        // Use Contacts.validEmail()
+
+        // Add email to holding list
 
 
         // Adds new info to contacts.txt
