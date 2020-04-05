@@ -3,22 +3,24 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Add_ted {
+    Contact contacts = new Contact();
 
     public static void addContact() throws IOException {
         Scanner input = new Scanner(System.in);
-        StringBuilder holding = new StringBuilder();
+        ArrayList<Contact> contactMatch = new ArrayList<>();
 
         // Prompt user to enter a name
         System.out.print("Please enter contact's name : ");
         String newContactName = input.nextLine();
 
         // Search contacts for similar name
-//        if (Print_ted.allContacts().contains())
+
             // If found prompt user if they want to override this contact
 
             // If not the addContacts()
@@ -44,5 +46,9 @@ public class Add_ted {
 
         List<String> showMe = Files.readAllLines(Paths.get("src", "contacts.txt"));
         System.out.println(showMe);
+    }
+
+    public static void main(String[] args) {
+
     }
 }

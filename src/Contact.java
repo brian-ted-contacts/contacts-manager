@@ -1,10 +1,48 @@
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Contact {
+    private String name;
+    private String phone;
+    private String email;
     Scanner input = new Scanner(System.in);
+
     public Contact (){};
+
+    public Contact(String name, String phone, String email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     // Method used to turn string of numbers into
     // valid phone number format
@@ -88,9 +126,56 @@ public class Contact {
     }
 
     // Method to take contact and separate into sections
-    public String[] useableContact(String str){
-        return str.split(",");
+    public static ArrayList<Contact> getAllContacts() throws IOException {
+        ArrayList<Contact> contacts = new ArrayList<>();
 
+        // Takes information from contact.txt and turns it into an array of strings
+        List<String> contactList = Files.readAllLines(Paths.get("src","contacts.txt"));
+
+        // Cycle thru each line of the document
+        for (String s : contactList) {
+
+            // Turn each line into another array of strings
+            // separated at the ","
+            String[] contactLine = s.split(",");
+
+            // use the above array to creat a new Contact and add it to ArrayList
+            Contact hold = new Contact(contactLine[0], contactLine[1], contactLine[2]);
+            contacts.add(hold);
+        }
+
+        // Return ArrayList with added contacts.
+        return contacts;
+    }
+
+    // Method to get list of Contact info
+    public static ArrayList<String> getContactInfo(int num) throws IOException {
+        // Set contacts to array and set holding array
+        ArrayList<Contact> contacts = Contact.getAllContacts();
+        ArrayList<String> infoNeeded = new ArrayList<>();
+
+        // Depending on number entered get need info and
+        // add it to holding array
+        switch (num){
+            case 1:
+                for (Contact contact : contacts){
+                    infoNeeded.add(contact.getName());
+                }
+                break;
+            case 2:
+                for (Contact contact : contacts){
+                    infoNeeded.add(contact.getPhone());
+                }
+                break;
+            default:
+                for (Contact contact : contacts){
+                    infoNeeded.add(contact.getEmail());
+                }
+                break;
+        }
+
+        // Return array of info needed
+        return infoNeeded;
     }
 
 
