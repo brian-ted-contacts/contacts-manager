@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -178,5 +179,22 @@ public class Contact {
         return infoNeeded;
     }
 
+    public static void updateContacts(ArrayList<Contact> list) throws IOException {
+        List<String> updatedContacts = new ArrayList<>();
+        Path filepath = Paths.get("src","contacts.txt");
+
+        for (Contact contact : list){
+            String holdContacts = contact.getName() + "," +
+                    contact.getPhone() + "," +
+                    contact.getEmail();
+            updatedContacts.add(holdContacts);
+        }
+        Files.write(filepath, updatedContacts);
+
+    }
+
+    public static void main(String[] args) throws IOException {
+        Contact.updateContacts();
+    }
 
 }
