@@ -1,9 +1,13 @@
+package contact_management;
+
+import util.Input;
+
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +15,7 @@ public class Contact {
     private String name;
     private String phone;
     private String email;
-    Scanner input = new Scanner(System.in);
+    static Input input = new Input();
 
     public Contact (){};
 
@@ -47,7 +51,7 @@ public class Contact {
 
     // Method used to turn string of numbers into
     // valid phone number format
-    public static String correctPhoneFormat(String str, int num){
+    public static String correctPhoneFormat(String str, int numLength){
         // Create Array to hold characters (numbers)
         ArrayList<Character> phone = new ArrayList<>();
 
@@ -59,7 +63,7 @@ public class Contact {
 
         // Using the length of the given string determine
         // proper placing of hyphens
-        if (num == 10){
+        if (numLength == 10){
             phone.add(3,'-');
             phone.add(7,'-');
         } else {
@@ -80,10 +84,9 @@ public class Contact {
     }
 
     // Method to confirm phone number is valid
-    public String validNumber(){
-        // Ask user for numbers and store response
-        System.out.print("Enter the phone number with only numbers : ");
-        String userResponse = input.nextLine();
+    public static String validNumber(String prompt){
+        // Ask user for numbers using prompt and store response
+        String userResponse = input.getString(prompt);
 
         // Try to determine is response is valid (only numbers)
         try {
@@ -96,7 +99,7 @@ public class Contact {
 
             // Prompt user they entered invalid format and have user retry
             System.out.println("\nYou entered an invalid format.\n");
-             return validNumber();
+             return validNumber(prompt);
         }
 
         // Determine using length of numbers if it is a valid number
@@ -108,20 +111,20 @@ public class Contact {
 
             // Prompt user that numbers are not valid as numbre and have them retry
             System.out.println("\nInvalid length. Please check the number.\n");
-            return validNumber();
+            return validNumber(prompt);
         }
 
     }
 
     // Method to confirm email is valid
-    public String validEmail(String str){
+    public static String validEmail(String str){
         // Looking to see if string contains @
         if (str.contains("@")){ // true
             return str;
         } else {// false
             // Prompt user for valid email and retry
             System.out.println("Invalid Email format\n\nEnter a valid email : ");
-            String userResponse = input.nextLine();
+            String userResponse = input.getString();
             return validEmail(userResponse);
         }
     }
@@ -140,7 +143,7 @@ public class Contact {
             // separated at the ","
             String[] contactLine = s.split(",");
 
-            // use the above array to creat a new Contact and add it to ArrayList
+            // use the above array to creat a new contact_management.Contact and add it to ArrayList
             Contact hold = new Contact(contactLine[0], contactLine[1], contactLine[2]);
             contacts.add(hold);
         }
@@ -150,27 +153,27 @@ public class Contact {
     }
 
     // Method to get list of Contact info
-    public static ArrayList<String> getContactInfo(int num) throws IOException {
+    public static HashMap<String,Integer> getContactInfo(int num) throws IOException {
         // Set contacts to array and set holding array
         ArrayList<Contact> contacts = Contact.getAllContacts();
-        ArrayList<String> infoNeeded = new ArrayList<>();
+        HashMap<String,Integer> infoNeeded = new HashMap<>();
 
         // Depending on number entered get need info and
         // add it to holding array
         switch (num){
             case 1:
-                for (Contact contact : contacts){
-                    infoNeeded.add(contact.getName());
+                for (int i = 0; i < contacts.size(); i++){
+                    infoNeeded.put(contacts.get(i).getName(), i);
                 }
                 break;
             case 2:
-                for (Contact contact : contacts){
-                    infoNeeded.add(contact.getPhone());
+                for (int i = 0; i < contacts.size(); i++){
+                    infoNeeded.put(contacts.get(i).getPhone(), i);
                 }
                 break;
             default:
-                for (Contact contact : contacts){
-                    infoNeeded.add(contact.getEmail());
+                for (int i = 0; i < contacts.size(); i++){
+                    infoNeeded.put(contacts.get(i).getEmail(), i);
                 }
                 break;
         }
@@ -179,6 +182,7 @@ public class Contact {
         return infoNeeded;
     }
 
+    // Method to update contacts.txt
     public static void updateContacts(ArrayList<Contact> list) throws IOException {
         List<String> updatedContacts = new ArrayList<>();
         Path filepath = Paths.get("src","contacts.txt");
@@ -194,7 +198,18 @@ public class Contact {
     }
 
     public static void main(String[] args) throws IOException {
-        Contact.updateContacts();
+        ArrayList<Contact> test = new ArrayList<>();
+        Contact s1 = new Contact("Name","Phone","Email");
+        test.add(s1);
+        Contact s2 = new Contact("Sylvanas Windrunner","210-999-9999","windrunner@email.com");
+        test.add(s2);
+
+        Contact.updateContacts(test);
+        System.out.println(s2.getName().toLowerCase().contains("sylvanas windrunner"));
+        System.out.println(s2.getName().toLowerCase().equals("sylvanas windrunner"));
+        System.out.println(s2.getName().toLowerCase().startsWith("sylvanas windrunner"));
+
+
     }
 
 }

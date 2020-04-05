@@ -1,12 +1,12 @@
+package contact_management;
 
-import org.w3c.dom.ls.LSOutput;
+import util.Input;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class rando {
     public static void main(String[] args) throws IOException {
-        Scanner input = new Scanner(System.in);
+        Input input = new Input();
 
         // Variable to exit application
         int exit = 0;
@@ -28,29 +28,12 @@ public class rando {
                     " > ");
 
             // Capture and store userResponse
-            String response = input.nextLine();
+            answer = input.getInt(0,5);
 
             // Spacing Buffer
             System.out.println("");
 
-            // Try to handle the input of the user
-            try {
-
-                // Checking to see if response was a Integer
-                answer = Integer.parseInt(response);
-
-            // Catch above exceptions
-            } catch (NumberFormatException nfe) {
-
-                // send error to error_log.txt
-//                e.printStackTrace();
-
-                // Set answer to something other that options to loop
-                answer = -1;
-            }
-
-            // If user response if valid see what they want to do
-
+            // Action is based on user response
             switch (answer){
                 case 1:
                     // Print out all contacts

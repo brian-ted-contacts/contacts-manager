@@ -1,3 +1,7 @@
+package contact_management;
+
+import contact_management.Contact;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
