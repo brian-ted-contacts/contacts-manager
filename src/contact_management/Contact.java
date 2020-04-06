@@ -126,9 +126,8 @@ public class Contact {
             return userEmail;
         } else {// false
             // Prompt user for valid email and retry
-            System.out.print("Invalid Email format\n\nEnter a valid email : ");
-            String userResponse = input.getString();
-            return validEmail(userResponse);
+            System.out.print("\nInvalid email format\n");
+            return validEmail("Enter a valid email : ");
         }
     }
 

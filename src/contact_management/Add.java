@@ -8,10 +8,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-public class Add {
+public class Add extends Contact {
     static Input input = new Input();
 
-    public static void addContact() throws IOException {
+    public static String addContact() throws IOException {
 
         // Prompt user to enter a name
         System.out.print("Please enter contact's name : ");
@@ -20,7 +20,7 @@ public class Add {
      // Search contacts for similar name in array with all names
 
         // Create HashMap of all names as keys and values are placement in contacts
-        HashMap<String,Integer> names = Contact.getContactInfo(1);
+        HashMap<String,Integer> names = getContactInfo(1);
 
         // Iterate through all names to find all that are similar to given name
         for (int a = 0; a < names.size(); a++) {
@@ -48,7 +48,7 @@ public class Add {
         Files.write(
                 Paths.get("src", "contacts.txt"), Arrays.asList(newContactName + "," +  newPhoneNumber + "," + newEmail),StandardOpenOption.APPEND);
 
-        System.out.printf("\t%s has been added to your contacts!\n",newContactName);
+        return String.format("\t%s has been added to your contacts!\n",newContactName);
     }
 
 }

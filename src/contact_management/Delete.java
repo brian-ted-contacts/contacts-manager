@@ -5,11 +5,11 @@ import util.Input;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Delete {
+public class Delete extends Contact {
     static Input input = new Input();
 
-    public static void deleteContact() throws IOException {
-        ArrayList<Contact> contacts = Contact.getAllContacts();
+    public static String deleteContact() throws IOException {
+        var contacts = getAllContacts();
 
         // Cycle thru Contacts and post them in a easy to read format
         for (int i = 0; i < contacts.size(); i++){
@@ -20,20 +20,23 @@ public class Delete {
         // Allow user to select contact and store response
         int contactToDelete = input.getInt(0,contacts.size(),"Which contact do you want to delete : ");
 
-        System.out.println(contactToDelete);
-
+        // If user chose a contact to delete
         if (contactToDelete != 0 ){
             // Confirm user wants to delete selected contact
             String prompt = String.format("Are you sure you want to delete %s? \n\t [y/n] > ",contacts.get(contactToDelete-1).getName());
             boolean confirmDelete = input.yesNo(prompt);
+            // If user said they didn't want to delete contact after all
+            // then return to delete menu
             if (!confirmDelete) {
                 deleteContact();
             }
             // Prompt user that contact has been deleted and update contact.txt
             System.out.printf("\n\t%s has been deleted.\n",contacts.get(contactToDelete-1).getName());
-            contacts.remove(contactToDelete);
-            Contact.updateContacts(contacts);
+            contacts.remove(contactToDelete-1);
+            updateContacts(contacts);
         }
+
+        return "";
 
     }
 
