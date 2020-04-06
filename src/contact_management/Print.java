@@ -5,7 +5,7 @@ import contact_management.Contact;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Print_ted{
+public class Print {
 
     public static void showContacts() throws IOException {
         ArrayList<Contact> contacts = Contact.getAllContacts();

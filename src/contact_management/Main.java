@@ -4,7 +4,7 @@ import util.Input;
 
 import java.io.IOException;
 
-public class rando {
+public class Main {
     public static void main(String[] args) throws IOException {
         Input input = new Input();
 
@@ -37,20 +37,20 @@ public class rando {
             switch (answer){
                 case 1:
                     // Print out all contacts
-                    Print_ted.showContacts();
+                    Print.showContacts();
                     break;
                 case 2:
                     // Add a contact
 //                    System.out.println("add");
-                    Add_ted.addContact();
+                    Add.addContact();
                     break;
                 case 3:
                     // Search for contact
-                    System.out.println("search");
+                    Search.searchContact();
                     break;
                 case 4:
                     // Change contact
-                    Change_ted.changeContact();
+                    Change.changeContact();
                     break;
                 case 5:
                     // Delete contact

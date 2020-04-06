@@ -5,7 +5,7 @@ import util.Input;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Change_ted {
+public class Change {
     static Input input = new Input();
 
     public static void changeContact() throws IOException {

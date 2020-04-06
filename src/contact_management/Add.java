@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-public class Add_ted {
+public class Add {
     static Input input = new Input();
 
     public static void addContact() throws IOException {
