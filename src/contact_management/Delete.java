@@ -3,7 +3,6 @@ package contact_management;
 import util.Input;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Delete extends Contact {
     static Input input = new Input();

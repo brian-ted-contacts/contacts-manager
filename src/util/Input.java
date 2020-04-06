@@ -1,6 +1,5 @@
 package util;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Input {
@@ -166,14 +165,5 @@ public class Input {
         return str == null || str.isEmpty();
     }
 
-    // Method to get key from HashMap
-    public static String getKey(HashMap<String, Integer> map, Integer value) {
-        for (String key : map.keySet()) {
-            if (value.equals(map.get(key))) {
-                return key;
-            }
-        }
-        return null;
-    }
 
 }
