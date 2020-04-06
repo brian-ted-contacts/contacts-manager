@@ -117,10 +117,11 @@ public class Contact {
     }
 
     // Method to confirm email is valid
-    public static String validEmail(String str){
+    public static String validEmail(String prompt){
+        String userEmail = input.getString(prompt);
         // Looking to see if string contains @
-        if (str.contains("@")){ // true
-            return str;
+        if (userEmail.contains("@")){ // true
+            return userEmail;
         } else {// false
             // Prompt user for valid email and retry
             System.out.println("Invalid Email format\n\nEnter a valid email : ");
