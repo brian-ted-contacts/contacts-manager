@@ -50,7 +50,7 @@ public class rando {
                     break;
                 case 4:
                     // Change contact
-                    System.out.println("change");
+                    Change_ted.changeContact();
                     break;
                 case 5:
                     // Delete contact

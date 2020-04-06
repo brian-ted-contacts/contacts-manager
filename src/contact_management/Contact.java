@@ -17,6 +17,7 @@ public class Contact {
     private String email;
     static Input input = new Input();
 
+    // Constructors
     public Contact (){};
 
     public Contact(String name, String phone, String email) {
@@ -25,32 +26,33 @@ public class Contact {
         this.email = email;
     }
 
+    // Getters
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
+    }
+
+    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // Method used to turn string of numbers into
-    // valid phone number format
+    // Method used to turn string of numbers into a valid phone number format
     public static String correctPhoneFormat(String str, int numLength){
         // Create Array to hold characters (numbers)
         ArrayList<Character> phone = new ArrayList<>();
@@ -124,7 +126,7 @@ public class Contact {
             return userEmail;
         } else {// false
             // Prompt user for valid email and retry
-            System.out.println("Invalid Email format\n\nEnter a valid email : ");
+            System.out.print("Invalid Email format\n\nEnter a valid email : ");
             String userResponse = input.getString();
             return validEmail(userResponse);
         }
@@ -198,19 +200,18 @@ public class Contact {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        ArrayList<Contact> test = new ArrayList<>();
-        Contact s1 = new Contact("Name","Phone","Email");
-        test.add(s1);
-        Contact s2 = new Contact("Sylvanas Windrunner","210-999-9999","windrunner@email.com");
-        test.add(s2);
+    // Method to see if a duplicate exists
+    public static String isDuplicate(int num, String prompt) throws IOException {
+        HashMap<String,Integer> contactList = getContactInfo(num);
+        String userWants = input.getString(prompt);
 
-        Contact.updateContacts(test);
-        System.out.println(s2.getName().toLowerCase().contains("sylvanas windrunner"));
-        System.out.println(s2.getName().toLowerCase().equals("sylvanas windrunner"));
-        System.out.println(s2.getName().toLowerCase().startsWith("sylvanas windrunner"));
+        // Check to see if there is a duplicate with contact list
+        if (contactList.containsKey(userWants)) {
+            System.out.printf("\t%s already exists in your contact. Please try something else\n",userWants);
+            isDuplicate(num,prompt);
+        }
 
-
+        return userWants;
     }
 
 }

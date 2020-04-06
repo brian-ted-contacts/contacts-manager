@@ -9,11 +9,9 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Add_ted {
-    Contact contacts = new Contact();
     static Input input = new Input();
 
     public static void addContact() throws IOException {
-        Contact newContact = new Contact();
 
         // Prompt user to enter a name
         System.out.print("Please enter contact's name : ");
@@ -37,34 +35,20 @@ public class Add_ted {
                     // If they don't want to override contact then restart addContact method
                     addContact();
                 }
-
-            // If no name found then add name to newContact
-            } else {
-                newContact.setName(newContactName);
             }
         }
 
         // Prompt user for the phone number of the contact and validate it using validNumber
         String newPhoneNumber = Contact.validNumber("Please enter the contact's phone number using only numbers : ");
 
-        // Add phone number to holding list
-        newContact.setPhone(newPhoneNumber);
-
         // Prompt user for email and validate it user validEmail
         String newEmail = Contact.validEmail("Please enter the contact's email : ");
 
-        // Add email to holding list
-        newContact.setEmail(newEmail);
-
         // Adds new info to contacts.txt
         Files.write(
-                Paths.get("src", "contacts.txt"), Arrays.asList(newContact.getName() + "," +  newContact.getPhone() + "," + newContact.getEmail()),StandardOpenOption.APPEND);
+                Paths.get("src", "contacts.txt"), Arrays.asList(newContactName + "," +  newPhoneNumber + "," + newEmail),StandardOpenOption.APPEND);
 
-        List<String> showMe = Files.readAllLines(Paths.get("src", "contacts.txt"));
-        System.out.println(showMe);
+        System.out.printf("\t%s has been added to your contacts!\n",newContactName);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
