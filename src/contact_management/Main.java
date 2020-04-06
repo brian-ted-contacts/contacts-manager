@@ -4,7 +4,7 @@ import util.Input;
 
 import java.io.IOException;
 
-public class rando {
+public class Main {
     public static void main(String[] args) throws IOException {
         Input input = new Input();
 
@@ -21,7 +21,7 @@ public class rando {
             System.out.print("Please chose from one of the following options: \n" +
                     "\t1 - View all contacts\n" +
                     "\t2 - Add a new contact\n" +
-                    "\t3 - Search for a contact by name\n" +
+                    "\t3 - Search for a contact\n" +
                     "\t4 - Change an existing contact\n" +
                     "\t5 - Delete an existing contact\n" +
                     "\t0 - Exit contact application\n" +
@@ -37,24 +37,24 @@ public class rando {
             switch (answer){
                 case 1:
                     // Print out all contacts
-                    Print_ted.showContacts();
+                    Print.showContacts();
                     break;
                 case 2:
                     // Add a contact
 //                    System.out.println("add");
-                    Add_ted.addContact();
+                    System.out.println(Add.addContact());
                     break;
                 case 3:
                     // Search for contact
-                    System.out.println("search");
+                    System.out.println(Search.searchContact());
                     break;
                 case 4:
                     // Change contact
-                    System.out.println("change");
+                    System.out.println(Change.changeContact());
                     break;
                 case 5:
                     // Delete contact
-                    System.out.println("delete");
+                    System.out.println(Delete.deleteContact());
                     break;
                 default:
                     break;
