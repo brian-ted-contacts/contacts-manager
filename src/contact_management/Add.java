@@ -12,6 +12,7 @@ public class Add extends Contact {
     static Input input = new Input();
 
     public static String addContact() throws IOException {
+        ArrayList<Contact> mainList = getAllContacts();
 
         // Prompt user to enter a name
         System.out.print("Please enter contact's name : ");
@@ -22,19 +23,26 @@ public class Add extends Contact {
         // Create HashMap of all names as keys and values are placement in contacts
         HashMap<String,Integer> names = getContactInfo(1);
 
-        // Iterate through all names to find all that are similar to given name
-        for (int a = 0; a < names.size(); a++) {
+        // If similar name is found prompt user if they want to override it
+        if (names.containsKey(newContactName)) {
+            if (input.yesNo("A contact with the name %s already exists. Do you want to overide it?\n\t [y/n] > ")){
 
-            // If similar name is found prompt user if they want to override it
-            if (names.containsKey(newContactName)) {
-                if (input.yesNo("A contact with the name %s already exists. Do you want to overide it?\n\t [y/n] > ")){
-                    // If they want to override contact then change contact
+                // If they want to override contact then change contact info
+                mainList.get(names.get(newContactName)).setName(newContactName);
 
-                } else {
+                String newPhoneNumber = Contact.validNumber("\nPlease enter the contact's phone number using only numbers : ");
+                mainList.get(names.get(newContactName)).setPhone(newPhoneNumber);
 
-                    // If they don't want to override contact then restart addContact method
-                    addContact();
-                }
+                String newEmail = Contact.validEmail("Please enter the contact's email : ");
+                mainList.get(names.get(newContactName)).setEmail(newEmail);
+                // Update contact.txt with changes and info user
+                updateContacts(mainList);
+                return String.format("\n\t%s has been added to your contacts!\n",newContactName);
+
+            } else {
+
+                // If they don't want to override contact then restart addContact method
+                addContact();
             }
         }
 
@@ -51,4 +59,7 @@ public class Add extends Contact {
         return String.format("\t%s has been added to your contacts!\n",newContactName);
     }
 
+    public static void main(String[] args) throws IOException{
+        System.out.println(addContact());
+    }
 }
