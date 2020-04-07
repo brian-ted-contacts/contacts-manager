@@ -21,28 +21,26 @@ public class Change extends Contact {
         int contactToChange = input.getInt(0, contacts.size(), "Which contact do you want to change : ");
 
         // Decide what to do based on selection
-        switch (contactToChange) {
-            case 0:
-                return "";
-            default:
-                // Have user change contact name and set it
-                System.out.print("\nCurrent name : " + contacts.get(contactToChange - 1).getName());
-                String newName = isDuplicate(1, "Enter new name : ");
-                contacts.get(contactToChange - 1).setName(newName);
-
-                // Have user change contact phone and set it
-                System.out.print("\nCurrent phone : " + contacts.get(contactToChange - 1).getPhone());
-                String newPhone = validNumber("Enter new phone : ");
-                contacts.get(contactToChange - 1).setPhone(newPhone);
-
-                // Have user change contact email and set it
-                System.out.print("\nCurrent email : " + contacts.get(contactToChange - 1).getEmail());
-                String newEmail = validEmail("Enter new email : ");
-                contacts.get(contactToChange - 1).setEmail(newEmail);
-
-                // Prompt user that contact has been changed and update contact.txt
-                updateContacts(contacts);
-                return String.format("\n\t%s has been changed.\n", newName);
+        if (contactToChange == 0) {
+            return "";
         }
+        // Have user change contact name and set it
+        System.out.print("\nCurrent name : " + contacts.get(contactToChange - 1).getName());
+        String newName = isDuplicate(1, "Enter new name : ");
+        contacts.get(contactToChange - 1).setName(newName);
+
+        // Have user change contact phone and set it
+        System.out.print("\nCurrent phone : " + contacts.get(contactToChange - 1).getPhone());
+        String newPhone = validNumber("Enter new phone : ");
+        contacts.get(contactToChange - 1).setPhone(newPhone);
+
+        // Have user change contact email and set it
+        System.out.print("\nCurrent email : " + contacts.get(contactToChange - 1).getEmail());
+        String newEmail = validEmail("Enter new email : ");
+        contacts.get(contactToChange - 1).setEmail(newEmail);
+
+        // Prompt user that contact has been changed and update contact.txt
+        updateContacts(contacts);
+        return String.format("\n\t%s has been changed.\n", newName);
     }
 }

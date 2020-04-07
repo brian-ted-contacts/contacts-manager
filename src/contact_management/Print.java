@@ -5,10 +5,10 @@ import contact_management.Contact;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Print {
+public class Print extends Contact {
 
     public static void showContacts() throws IOException {
-        ArrayList<Contact> contacts = Contact.getAllContacts();
+        ArrayList<Contact> contacts = getAllContacts();
 
         // Cycle thru Contacts and post them in a easy to read format
         for (Contact contact : contacts){
