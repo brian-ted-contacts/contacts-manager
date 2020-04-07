@@ -59,7 +59,4 @@ public class Add extends Contact {
         return String.format("\t%s has been added to your contacts!\n",newContactName);
     }
 
-    public static void main(String[] args) throws IOException{
-        System.out.println(addContact());
-    }
 }
